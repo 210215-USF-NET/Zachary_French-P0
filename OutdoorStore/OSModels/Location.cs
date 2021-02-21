@@ -13,7 +13,7 @@ namespace OSModels
                 name = value;
             }
         }
-        public string Location {
+        public string StoreLocation {
             get{
                 return location;
             } 

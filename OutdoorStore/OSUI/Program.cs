@@ -6,7 +6,8 @@ namespace OSUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IMenu menu = new IDEntryMenu();
+            menu.Start();
         }
     }
 }

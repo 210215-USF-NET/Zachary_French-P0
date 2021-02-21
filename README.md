@@ -1,2 +1,2 @@
 # Zachary_French-P0
-Zacahry French's Revature P0 Store Project
+This is Zachary French's P0 application, called **Outdoor Store Shopping Guide**.

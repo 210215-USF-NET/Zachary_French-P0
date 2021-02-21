@@ -23,7 +23,7 @@ namespace OSModels
                 price = value;
             }
         }
-        public string Category {
+        public ProductCategory Category {
             get{
                 return category;
             } 
