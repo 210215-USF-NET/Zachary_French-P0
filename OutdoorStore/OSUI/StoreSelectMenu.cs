@@ -32,6 +32,7 @@ namespace OSUI
                 Console.WriteLine("Please enter the name of the store you'd like to shop from.");
                 Console.WriteLine("Our current locations:");
                 Console.WriteLine("= = = = = = = =");
+                Console.WriteLine(StorefrontList);
                 foreach(Location store in StorefrontList)
                 {
                     Console.WriteLine($"{store.Name}");
@@ -44,7 +45,7 @@ namespace OSUI
                 {
                     if (userInput.Equals(store.Name))
                     {
-                        //TODO: launch shopping page for that store
+                        menu = new CategoryChoiceMenu(store);
                     }
                     else if (userInput.Equals("0"))
                     {

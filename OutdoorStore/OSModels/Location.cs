@@ -3,7 +3,8 @@ namespace OSModels
     public class Location
     {
         private string name;
-        private string location;
+        private string address;
+
         public string Name {
             get{
                 return name;
@@ -13,16 +14,21 @@ namespace OSModels
                 name = value;
             }
         }
-        public string StoreLocation {
+        public string Address {
             get{
-                return location;
+                return address;
             } 
             set {
                 if(value.Equals(null)) {} //TODO: throw exception
-                location = value;
+                address = value;
             }
         }
 
         //TODO: Inventory
+
+        public override string ToString()
+        {
+            return $"name: {name} address: {address}";
+        }
     }
 }

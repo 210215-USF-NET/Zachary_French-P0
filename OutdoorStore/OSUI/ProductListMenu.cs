@@ -7,15 +7,22 @@ namespace OSUI
 {
     public class ProductListMenu : IMenu
     {
-        public void Start()
+        Location loc;
+        ProductCategory pc;
+
+        public ProductListMenu(ProductCategory _pc, Location _loc)
         {
-            //craete UI with all categories
+            pc = _pc;
+            loc = _loc;
         }
 
-        public void Start(ProductCategory pc)
+        public ProductListMenu(Location _loc)
         {
-            //create UI with just one category
-            
+            loc = _loc;
+        }
+
+        public void Start()
+        {
             Product prod = new Product();
             prod.Name = "testName";
             prod.PID = "tName";
@@ -24,6 +31,8 @@ namespace OSUI
 
             PrintListing(prod);
         }
+
+        
 
         public void PrintListing(Product p)
         {

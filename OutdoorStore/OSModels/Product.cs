@@ -16,7 +16,10 @@ namespace OSModels
                 return productName;
             } 
             set {
-                if(value.Equals(null)) {} //TODO: throw exception
+                if(value.Equals(null))
+                {
+                    ThrowNullException();
+                }
                 productName = value;
             }
         }
@@ -25,7 +28,10 @@ namespace OSModels
                 return pID;
             } 
             set {
-                if(value.Equals(null)) {} //TODO: throw exception
+                if(value.Equals(null))
+                {
+                    ThrowNullException();
+                }
                 pID = value;
             }
         }
@@ -34,7 +40,10 @@ namespace OSModels
                 return price;
             } 
             set {
-                if(value.Equals(null)) {} //TODO: throw exception
+                if(value.Equals(null))
+                {
+                    ThrowNullException();
+                }
                 price = value;
             }
         }
@@ -43,7 +52,10 @@ namespace OSModels
                 return category;
             } 
             set {
-                if(value.Equals(null)) {} //TODO: throw exception
+                if(value.Equals(null)) 
+                {
+                    ThrowNullException();
+                }
                 category = value;
             }
         }
@@ -63,15 +75,9 @@ namespace OSModels
         private void ThrowNullException()
         {
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
+            Log.Error("Null value provided to Product method.");
 
-            try
-            {
-                throw new Exception("Null value not valid");
-            }
-            catch (System.Exception)
-            {
-                Log.Error("Null value provided to Product method.");
-            }
+            throw new Exception("Null value not valid");
         }
     }
 }

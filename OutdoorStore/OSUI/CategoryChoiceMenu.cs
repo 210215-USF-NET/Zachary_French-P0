@@ -7,11 +7,14 @@ namespace OSUI
 {
     public class CategoryChoiceMenu : IMenu
     {
-        Location loc;
-        CategoryChoiceMenu(Location _loc)
+        public Location loc;
+        public ProductCategory pc;
+
+        public CategoryChoiceMenu(Location _loc)
         {
             loc = _loc;
         }
+
         public void Start()
         {
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
@@ -30,6 +33,7 @@ namespace OSUI
                 Console.WriteLine("[3] Climbing_Gear");
                 Console.WriteLine("[4] Clothing");
                 Console.WriteLine("[5] Shoes");
+                Console.WriteLine("[6] All Categories");
                 Console.WriteLine("[0] Back");
                 string userInput = Console.ReadLine();
                 
@@ -37,18 +41,33 @@ namespace OSUI
                 {
                     case "1":
                         //TODO:launch product menu
+                        pc = ProductCategory.Backpacks;
+                        menu = new ProductListMenu(pc, loc);
+                        menu.Start();
                         break;
                     case "2":
-                        //TODO:launch product menu
+                        pc = ProductCategory.Camping_Gear;
+                        menu = new ProductListMenu(pc, loc);
+                        menu.Start();
                         break;
                     case "3":
-                        //TODO:launch product menu
+                        pc = ProductCategory.Climbing_Gear;
+                        menu = new ProductListMenu(pc, loc);
+                        menu.Start();
                         break;
                     case "4":
-                        //TODO:launch product menu
+                        pc = ProductCategory.Clothing;
+                        menu = new ProductListMenu(pc, loc);
+                        menu.Start();
                         break;
                     case "5":
-                        //TODO:launch product menu
+                        pc = ProductCategory.Shoes;
+                        menu = new ProductListMenu(pc, loc);
+                        menu.Start();
+                        break;
+                    case "6":
+                        menu = new ProductListMenu(loc);
+                        menu.Start();
                         break;
                     case "0":
                         stay = false;
