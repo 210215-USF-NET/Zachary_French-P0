@@ -46,12 +46,12 @@ namespace OSUI
                         menu.Start();
                         break;
                     case "2":
-                        pc = ProductCategory.Camping_Gear;
+                        pc = ProductCategory.Camping;
                         menu = new ProductListMenu(pc, loc);
                         menu.Start();
                         break;
                     case "3":
-                        pc = ProductCategory.Climbing_Gear;
+                        pc = ProductCategory.Climbing;
                         menu = new ProductListMenu(pc, loc);
                         menu.Start();
                         break;

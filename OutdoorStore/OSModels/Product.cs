@@ -7,7 +7,7 @@ namespace OSModels
     {
         private string productName;
         private string pID;
-        private double price;
+        private int price;
         private ProductCategory category;
         private string description;
 
@@ -35,7 +35,7 @@ namespace OSModels
                 pID = value;
             }
         }
-        public double Price {
+        public int Price {
             get{
                 return price;
             } 

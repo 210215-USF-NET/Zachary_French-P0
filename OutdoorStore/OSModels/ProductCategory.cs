@@ -2,6 +2,6 @@ namespace OSModels
 {
     public enum ProductCategory
     {
-        Backpacks, Camping_Gear, Climbing_Gear, Clothing, Shoes
+        Backpacks, Camping, Climbing, Clothing, Shoes
     }
 }

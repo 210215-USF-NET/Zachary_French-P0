@@ -10,7 +10,7 @@ namespace OSModels
     public class Customer
     {
         private string name;
-        private List<Order> orderhistory;
+        private string address;
 
 
         public string Name {
@@ -26,17 +26,16 @@ namespace OSModels
             }
         }
 
-        public List<Order> OrderHistory
-        {
-            get {
-                return orderhistory;
-            }
+        public string Address {
+            get{
+                return address;
+            } 
             set {
                 if(value.Equals(null)) 
                 {
                     ThrowNullException();
                 }
-                orderhistory = value;
+                address = value;
             }
         }
 

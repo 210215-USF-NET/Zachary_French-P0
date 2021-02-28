@@ -24,11 +24,9 @@ namespace OSModels
             }
         }
 
-        //TODO: Inventory
-
         public override string ToString()
         {
-            return $"name: {name} address: {address}";
+            return $"Location: {name} address: {address}";
         }
     }
 }

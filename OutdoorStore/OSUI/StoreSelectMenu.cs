@@ -11,7 +11,7 @@ namespace OSUI
         public void Start()
         {
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
-            Boolean stay = true;
+            Boolean stay = true, badEntryFlag = true;
             IMenu menu;
 
             //TODO: get list of stores from database
@@ -19,8 +19,11 @@ namespace OSUI
             //TEST CODE (I KNOW I SHOULD BE UNIT TESTING BUT OH WELL)
             //-------------------------------
             Location newYork = new Location();
+            newYork.Name = "New York";
             Location chicago = new Location();
+            chicago.Name = "Chicago";
             Location losAngeles = new Location();
+            losAngeles.Name = "Los Angeles";
 
             StorefrontList.Add(newYork);
             StorefrontList.Add(chicago);
@@ -32,47 +35,43 @@ namespace OSUI
                 Console.WriteLine("Please enter the name of the store you'd like to shop from.");
                 Console.WriteLine("Our current locations:");
                 Console.WriteLine("= = = = = = = =");
-                Console.WriteLine(StorefrontList);
                 foreach(Location store in StorefrontList)
                 {
-                    Console.WriteLine($"{store.Name}");
+                    Console.WriteLine(store.Name);
                 }
                 Console.WriteLine("= = = = = = = =");
                 Console.WriteLine($"Or enter \"0\" to go back.");
                 string userInput = Console.ReadLine();
 
+                Console.WriteLine("<DEBUG>");
+                Console.WriteLine($"User Input: {userInput}");
+                Console.WriteLine($"store count: {StorefrontList.Count}");
+                Console.WriteLine("</DEBUG>");
+
+                if (userInput.Equals("0"))
+                {
+                    stay = false;
+                    break;
+                }
                 foreach(Location store in StorefrontList)
                 {
+                    Console.WriteLine(store.Name);
                     if (userInput.Equals(store.Name))
                     {
+                        badEntryFlag = false;
                         menu = new CategoryChoiceMenu(store);
-                    }
-                    else if (userInput.Equals("0"))
-                    {
-                        stay = false;
-                        break;
-                    }
-                    else {
-                        Log.Error("Invalid location selection");
-                        Console.WriteLine("Please enter a valid location.");
-                        Console.WriteLine("Press \"Enter\" to continue.");
-                        Console.ReadLine();
+                        menu.Start();
                         break;
                     }
                 }
-                // switch(userInput)
-                // {
-                //     case "0":
-                //         stay = false;
-                //         break;
-                //     default:
-                //         Log.Error("Invalid store selection.");
-                //         Console.WriteLine("Invalid choice - Please select a valid store.");
-                //         Console.WriteLine("Press \"Enter\" to continue.");
-                //         Console.ReadLine();
-                //         break;
-                // }
-                
+
+                if(badEntryFlag)
+                {
+                    Log.Error("Invalid location selection");
+                    Console.WriteLine("Please enter a valid location.");
+                    Console.WriteLine("Press \"Enter\" to continue.");
+                    Console.ReadLine();
+                }
             } while (stay);
         }
 

@@ -1,6 +1,6 @@
 namespace OSDL
 {
-    public class CustomerFileRepo
+    public class StoreRepoFile
     {
         
     }

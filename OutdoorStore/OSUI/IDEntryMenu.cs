@@ -1,11 +1,19 @@
 using System;
 using Serilog;
 using OSModels;
+using OSBL;
 
 namespace OSUI
 {
     public class IDEntryMenu : IMenu
     {
+        private IStoreBL _repo;
+
+        public IDEntryMenu(IStoreBL repo)
+        {
+            _repo = repo;
+        }
+
         public void Start() 
         {
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
