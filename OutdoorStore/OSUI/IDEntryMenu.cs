@@ -2,6 +2,7 @@ using System;
 using Serilog;
 using OSModels;
 using OSBL;
+using System.Collections.Generic;
 
 namespace OSUI
 {
@@ -35,14 +36,28 @@ namespace OSUI
                 switch(userInput)
                 {
                     case "1":
-                        //TODO: new customer
+                        _repo.AddCustomer(newCustomer());
+                        List<Customer> cList = _repo.GetCustomers();
+
+                        foreach(Customer b in cList)
+                        {
+                            Console.WriteLine(b.ToString());
+                        }
                         break;
                     case "2":
                         //TODO: search for customer details by name
                         //temp debug code:
-                            {menu = new CustomerMenu();
+                            {menu = new CustomerMenu(_repo);
                             menu.Start();}
                         break;
+                    // case "3":
+                    //     List<Customer> newList = _repo.GetCustomers();
+
+                    //     foreach(Customer b in newList)
+                    //     {
+                    //         Console.WriteLine(b.ToString());
+                    //     }
+                    //     break;
                     case "0":
                         stay = false;
                         Console.WriteLine("Thanks for shopping with REI!");
@@ -51,21 +66,18 @@ namespace OSUI
                         break;
                 }
             } while (stay);
+        }
 
+        public Customer newCustomer()
+        {
+            Customer c = new Customer();
 
-            // switch(userID)
-            // {
-            //     case "69":
-            //         Log.Information("Manager logged-in.");
-            //         menu = new ManagerMenu();
-            //         menu.Start();
-            //         break;
-            //     default:
-            //         Log.Information("User {userID} logged-in.", userID);
-            //         menu = new CustomerMenu();
-            //         menu.Start();
-            //         break;
-            // }
+            Console.WriteLine("Enter your full name:");
+            c.Name = Console.ReadLine();
+            Console.WriteLine("Enter your address:");
+            c.Address = Console.ReadLine();
+
+            return c;
         }
     }
 }

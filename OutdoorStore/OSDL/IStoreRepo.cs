@@ -12,6 +12,6 @@ namespace OSDL
         List<Order> GetOrders();
         List<Location> GetLocations();
         List<Product> GetProducts();
-        List<ProductCategory> GetProductCategories();
+        // List<ProductCategory> GetProductCategories();
     }
 }

@@ -46,5 +46,10 @@ namespace OSModels
 
             throw new Exception("Null value not valid");
         }
+
+        public override string ToString()
+        {
+            return $"Customer: {name}\n\tHome: {address}";
+        }
     }
 }

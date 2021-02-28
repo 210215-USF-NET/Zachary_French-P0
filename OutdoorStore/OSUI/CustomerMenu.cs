@@ -1,14 +1,16 @@
 using System;
 using Serilog;
+using OSBL;
 
 namespace OSUI
 {
     public class CustomerMenu : IMenu
     {
-        public CustomerMenu(){
-
+        private IStoreBL _repo;
+        public CustomerMenu(IStoreBL repo){
+            _repo = repo;
         }
-        public void Start() 
+        public void Start()
         {
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
             Boolean stay = true;
@@ -30,11 +32,11 @@ namespace OSUI
                 switch(custInput)
                 {
                     case "1":
-                    menu = new StoreSelectMenu();
+                    menu = new StoreSelectMenu(_repo);
                     menu.Start();
                     break;
                 case "2":
-                    menu = new OrderListMenu();
+                    menu = new OrderListMenu(_repo);
                     menu.Start();
                     break;
                 case "0":

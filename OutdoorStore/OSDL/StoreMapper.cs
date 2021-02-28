@@ -10,25 +10,40 @@ namespace OSDL
     {
         public Model.Customer ParseCustomer(Entity.Customer customer)
         {
-            throw new NotImplementedException();
+            return new Model.Customer {
+                Name = customer.Name,
+                Address = customer.Address
+            };
         }
         public Entity.Customer ParseCustomer(Model.Customer customer)
         {
-            throw new NotImplementedException();
+            return new Entity.Customer {
+                Name = customer.Name,
+                Address = customer.Address
+            };
         }
 
         public Model.Order ParseOrder(Entity.Order order)
         {
+            // return new Model.Order {
+            //     CustomerName = 
+            // };
             throw new NotImplementedException();
         }
         public Entity.Order ParseOrder(Model.Order order)
         {
+            // return new Model.Order {
+
+            // };
             throw new NotImplementedException();
         }
 
         public Model.Location ParseLocation(Entity.Location location)
         {
-            throw new NotImplementedException();
+            return new Model.Location {
+                Name = location.Name,
+                Address = location.Address
+            };
         }
         public Entity.Location ParseLocation(Model.Location location)
         {

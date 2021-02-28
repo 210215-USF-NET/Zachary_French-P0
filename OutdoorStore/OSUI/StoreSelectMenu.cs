@@ -1,5 +1,6 @@
 using System;
 using Serilog;
+using OSBL;
 using OSModels;
 using System.Collections.Generic;
 
@@ -7,7 +8,14 @@ namespace OSUI
 {
     public class StoreSelectMenu : IMenu
     {
-        public List<Location> StorefrontList = new List<Location>();
+        private IStoreBL _repo;
+        public List<Location> StorefrontList;
+        public StoreSelectMenu(IStoreBL repo)
+        {
+            _repo = repo;
+            StorefrontList = _repo.GetLocations();
+        }
+        
         public void Start()
         {
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
@@ -18,16 +26,16 @@ namespace OSUI
 
             //TEST CODE (I KNOW I SHOULD BE UNIT TESTING BUT OH WELL)
             //-------------------------------
-            Location newYork = new Location();
-            newYork.Name = "New York";
-            Location chicago = new Location();
-            chicago.Name = "Chicago";
-            Location losAngeles = new Location();
-            losAngeles.Name = "Los Angeles";
+            // Location newYork = new Location();
+            // newYork.Name = "New York";
+            // Location chicago = new Location();
+            // chicago.Name = "Chicago";
+            // Location losAngeles = new Location();
+            // losAngeles.Name = "Los Angeles";
 
-            StorefrontList.Add(newYork);
-            StorefrontList.Add(chicago);
-            StorefrontList.Add(losAngeles);
+            // StorefrontList.Add(newYork);
+            // StorefrontList.Add(chicago);
+            // StorefrontList.Add(losAngeles);
             //-------------------------------
 
             do

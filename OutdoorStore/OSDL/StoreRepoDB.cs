@@ -20,46 +20,49 @@ namespace OSDL
 
         public Model.Customer AddCustomer(Model.Customer newCust)
         {
-            // _context.Customer.Add(_mapper.ParseCustomer(newCust));
-            // _context.SaveChanges();
+            _context.Customers.Add(_mapper.ParseCustomer(newCust));
+            _context.SaveChanges();
             return newCust;
         }
 
         public List<Model.Customer> GetCustomers()
         {
-            // return _context.Customer.Select(x => _mapper.ParseCustomer(x)).ToList();
-            //temp code:
-            throw new NotImplementedException();
+            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList();
+            // //temp code:
+            // throw new NotImplementedException();
         }
 
         public Model.Customer GetCustomerByName(string name)
         {
-            throw new NotImplementedException();
+            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Name == name);
         }
 
-        public Model.Order AddOrder(Model.Order order)
+        public Model.Order AddOrder(Model.Order newOrder)
         {
-            throw new NotImplementedException();
+            _context.Orders.Add(_mapper.ParseOrder(newOrder));
+            _context.SaveChanges();
+            return newOrder;
         }
 
         public List<Model.Order> GetOrders()
         {
-            throw new NotImplementedException();
+            return _context.Orders.AsNoTracking().Select(x => _mapper.ParseOrder(x)).ToList();
         }
 
         public List<Model.Location> GetLocations()
         {
-            throw new NotImplementedException();
+            return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList();
         }
 
         public List<Model.Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList();
         }
 
-        public List<Model.ProductCategory> GetProductCategories()
-        {
-            throw new NotImplementedException();
-        }
+        //Commented out, may be unnecessary?
+        // public List<Model.ProductCategory> GetProductCategories()
+        // {
+        //     return _context.ProductCategories.AsNoTracking().Select(x => _mapper.ParseCategory(x)).ToList();
+        // }
     }
 }

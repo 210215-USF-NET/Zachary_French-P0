@@ -47,7 +47,7 @@ namespace OSBL
 
         public List<Location> GetLocations()
         {
-            throw new NotImplementedException();
+            return _repo.GetLocations();
         }
 
         public List<Product> GetProducts()
