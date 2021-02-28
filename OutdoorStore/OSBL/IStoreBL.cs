@@ -13,5 +13,7 @@ namespace OSBL
         List<Location> GetLocations();
         List<Product> GetProducts();
         List<ProductCategory> GetProductCategories();
+        Product GetProductByID(int num);
+        List<Item> GetItems();
     }
 }

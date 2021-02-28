@@ -20,5 +20,7 @@ namespace OSDL
         Model.Product ParseProduct(Entity.Product product);
         Entity.Product ParseProduct(Model.Product product);
 
+        Model.Item ParseItem(Entity.OrderItem orderItem);
+        Entity.OrderItem ParseItem(Model.Item item);
     }
 }

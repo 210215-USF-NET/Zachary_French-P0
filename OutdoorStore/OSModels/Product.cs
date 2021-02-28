@@ -6,7 +6,8 @@ namespace OSModels
     public class Product
     {
         private string productName;
-        private string pID;
+        public int id;
+        private string shortname;
         private int price;
         private ProductCategory category;
         private string description;
@@ -23,16 +24,28 @@ namespace OSModels
                 productName = value;
             }
         }
-        public string PID {
+        public int ID {
             get{
-                return pID;
+                return id;
             } 
             set {
                 if(value.Equals(null))
                 {
                     ThrowNullException();
                 }
-                pID = value;
+                id = value;
+            }
+        }
+        public string ShortName {
+            get{
+                return shortname;
+            } 
+            set {
+                if(value.Equals(null))
+                {
+                    ThrowNullException();
+                }
+                shortname = value;
             }
         }
         public int Price {
@@ -78,6 +91,12 @@ namespace OSModels
             Log.Error("Null value provided to Product method.");
 
             throw new Exception("Null value not valid");
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0,-53} {1,7}\n{2,-53} {3,7}\n\n{4,-8} {5,50}\n{6,-8} {7,52}\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =", 
+                "Product Name", "Price", this.Name, this.Price, "Product ID", "Description", this.ShortName, this.Description);
         }
     }
 }

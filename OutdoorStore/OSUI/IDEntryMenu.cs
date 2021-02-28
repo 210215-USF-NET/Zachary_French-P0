@@ -45,19 +45,35 @@ namespace OSUI
                         }
                         break;
                     case "2":
+                        Console.WriteLine("Please enter yourname:");
+                        string str = Console.ReadLine();
+                        Customer foundCust = _repo.GetCustomerByName(str);
+
+                        if (foundCust == null)
+                        {
+                            Console.WriteLine("No Customer by that name found, check your spelling and try again!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Customer record for {foundCust.Name} found.");
+                            menu = new CustomerMenu(_repo, foundCust);
+                            menu.Start();
+                        }
+                        break;
+                    case "3":
                         //TODO: search for customer details by name
                         //temp debug code:
-                            {menu = new CustomerMenu(_repo);
-                            menu.Start();}
-                        break;
-                    // case "3":
-                    //     List<Customer> newList = _repo.GetCustomers();
+                        //     {menu = new CustomerMenu(_repo);
+                        //     menu.Start();}
+                        // break;
+                    case "4":
+                        List<Customer> newList = _repo.GetCustomers();
 
-                    //     foreach(Customer b in newList)
-                    //     {
-                    //         Console.WriteLine(b.ToString());
-                    //     }
-                    //     break;
+                        foreach(Customer b in newList)
+                        {
+                            Console.WriteLine(b.ToString());
+                        }
+                        break;
                     case "0":
                         stay = false;
                         Console.WriteLine("Thanks for shopping with REI!");

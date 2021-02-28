@@ -15,7 +15,7 @@ namespace OSBL
 
         public void AddCustomer(Customer c)
         {
-            throw new NotImplementedException();
+            _repo.AddCustomer(c);
         }
 
         public List<Customer> GetCustomers()
@@ -37,12 +37,12 @@ namespace OSBL
 
         public void AddOrder(Order order)
         {
-            throw new NotImplementedException();
+            _repo.AddOrder(order);
         }
 
         public List<Order> GetOrders()
         {
-            throw new NotImplementedException();
+            return _repo.GetOrders();
         }
 
         public List<Location> GetLocations()
@@ -52,12 +52,21 @@ namespace OSBL
 
         public List<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return _repo.GetProducts();
+        }
+        public Product GetProductByID(int num)
+        {
+            return _repo.GetProductByID(num);
         }
 
         public List<ProductCategory> GetProductCategories()
         {
             throw new NotImplementedException();
+        }
+
+        public List<Item> GetItems()
+        {
+            return _repo.GetItems();
         }
     }
 }

@@ -1,14 +1,18 @@
 using System;
 using Serilog;
 using OSBL;
+using OSModels;
+using System.Collections.Generic;
 
 namespace OSUI
 {
     public class CustomerMenu : IMenu
     {
         private IStoreBL _repo;
-        public CustomerMenu(IStoreBL repo){
+        private Customer _customer;
+        public CustomerMenu(IStoreBL repo, Customer c){
             _repo = repo;
+            _customer = c;
         }
         public void Start()
         {
@@ -36,8 +40,10 @@ namespace OSUI
                     menu.Start();
                     break;
                 case "2":
-                    menu = new OrderListMenu(_repo);
-                    menu.Start();
+                    // menu = new OrderListMenu(_repo);
+                    // menu.Start();
+                    // break;
+                    GetOrderHistory();
                     break;
                 case "0":
                     stay = false;
@@ -51,6 +57,28 @@ namespace OSUI
                 }
             }
             while(stay);
+        }
+
+        private void GetOrderHistory()
+        {
+            int num;
+            List<Order> orders = _repo.GetOrders();
+            List<Item> items = _repo.GetItems();
+            foreach(Order o in orders)
+            {
+                if (o.CustomerID == _customer.ID)
+                {
+                    num = o.OrderID;
+                    Console.WriteLine(o.ToString());
+                    foreach(Item i in items)
+                    {
+                        if(num == i.OrderID)
+                        {
+                            Console.WriteLine(_repo.GetProductByID(i.ProductID).ToString());
+                        } 
+                    }
+                }
+            }
         }
     }
 }

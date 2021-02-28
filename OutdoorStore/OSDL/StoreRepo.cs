@@ -44,5 +44,15 @@ namespace OSDL
         {
             throw new NotImplementedException();
         }
+
+        public Product GetProductByID(int num)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Item> GetItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

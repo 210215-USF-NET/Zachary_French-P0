@@ -4,6 +4,7 @@ using Entity = OSDL.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using OSModels;
 
 namespace OSDL
 {
@@ -57,6 +58,15 @@ namespace OSDL
         public List<Model.Product> GetProducts()
         {
             return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList();
+        }
+        public Model.Product GetProductByID(int num)
+        {
+            return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList().FirstOrDefault(x => x.id == num);
+        }
+
+        public List<Item> GetItems()
+        {
+            return _context.OrderItems.AsNoTracking().Select(x => _mapper.ParseItem(x)).ToList();
         }
 
         //Commented out, may be unnecessary?

@@ -11,6 +11,8 @@ namespace OSModels
     {
         private string name;
         private string address;
+        private int id;
+        // private string phone;
 
 
         public string Name {
@@ -39,6 +41,32 @@ namespace OSModels
             }
         }
 
+        public int ID {
+            get{
+                return id;
+            } 
+            set {
+                if(value.Equals(null)) 
+                {
+                    ThrowNullException();
+                }
+                id = value;
+            }
+        }
+
+        // public string Phone {
+        //     get{
+        //         return phone;
+        //     } 
+        //     set {
+        //         if(value.Equals(null)) 
+        //         {
+        //             ThrowNullException();
+        //         }
+        //         phone = value;
+        //     }
+        // }
+
         private void ThrowNullException()
         {
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
@@ -49,7 +77,7 @@ namespace OSModels
 
         public override string ToString()
         {
-            return $"Customer: {name}\n\tHome: {address}";
+            return $"Customer: {name}\n\t ID: {id} Home: {address}";
         }
     }
 }
