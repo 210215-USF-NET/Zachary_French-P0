@@ -102,13 +102,24 @@ namespace OSDL
             };
         }
 
-        // Model.ProductCategory ParseProduct(Entity.ProductCategory category)
-        // {
-        //     return new ProductCategory
-        // }
-        // Model.ProductCategory ParseProduct(Entity.ProductCategory category)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        public Model.Inventory ParseInventory(Entity.Inventory inv)
+        {
+            return new Model.Inventory {
+                ID = inv.Id,
+                Quantity = inv.Quantity,
+                LocationID = (int) inv.LocationId,
+                ProductID = (int) inv.ProductId
+            };
+        }
+
+        public Entity.Inventory ParseInventory(Model.Inventory inv)
+        {
+            return new Entity.Inventory {
+                Id = inv.ID,
+                Quantity = inv.Quantity,
+                LocationId = (int) inv.LocationID,
+                ProductId = (int) inv.ProductID
+            };
+        }
     }
 }

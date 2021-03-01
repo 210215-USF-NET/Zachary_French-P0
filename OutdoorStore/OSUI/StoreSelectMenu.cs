@@ -67,7 +67,7 @@ namespace OSUI
                     if (userInput.Equals(store.Name))
                     {
                         badEntryFlag = false;
-                        menu = new CategoryChoiceMenu(store);
+                        menu = new CategoryChoiceMenu(store, _repo);
                         menu.Start();
                         break;
                     }

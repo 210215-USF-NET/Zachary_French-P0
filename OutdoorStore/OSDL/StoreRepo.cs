@@ -8,11 +8,11 @@ namespace OSDL
     {
         public List<Customer> GetCustomers()
         { 
-            return new List<Customer>();
+            throw new NotImplementedException();
         }
 
         public Customer AddCustomer(Customer newCust){
-            return new Customer();
+            throw new NotImplementedException();
         }
 
         public Customer GetCustomerByName(string name)
@@ -40,17 +40,22 @@ namespace OSDL
             throw new NotImplementedException();
         }
 
-        public List<ProductCategory> GetProductCategories()
-        {
-            throw new NotImplementedException();
-        }
-
         public Product GetProductByID(int num)
         {
             throw new NotImplementedException();
         }
 
+        public List<Product> GetProductsByCategories(ProductCategory pcat)
+        {
+            throw new NotImplementedException();
+        }
+        
         public List<Item> GetItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Inventory> GetInventories()
         {
             throw new NotImplementedException();
         }

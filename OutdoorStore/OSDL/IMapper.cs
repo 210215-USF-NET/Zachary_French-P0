@@ -22,5 +22,8 @@ namespace OSDL
 
         Model.Item ParseItem(Entity.OrderItem orderItem);
         Entity.OrderItem ParseItem(Model.Item item);
+
+        Model.Inventory ParseInventory(Entity.Inventory inv);
+        Entity.Inventory ParseInventory(Model.Inventory inv);
     }
 }

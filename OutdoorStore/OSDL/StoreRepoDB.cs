@@ -69,10 +69,28 @@ namespace OSDL
             return _context.OrderItems.AsNoTracking().Select(x => _mapper.ParseItem(x)).ToList();
         }
 
-        //Commented out, may be unnecessary?
-        // public List<Model.ProductCategory> GetProductCategories()
-        // {
-        //     return _context.ProductCategories.AsNoTracking().Select(x => _mapper.ParseCategory(x)).ToList();
-        // }
+        public List<Product> GetProductsByCategories(ProductCategory pcat)
+        {
+            switch(pcat)
+            {
+                case ProductCategory.Backpacks:
+                    return _context.Products.AsNoTracking().Where(x => x.Category == 1).Select(x => _mapper.ParseProduct(x)).ToList();
+                case ProductCategory.Camping:
+                    return _context.Products.AsNoTracking().Where(x => x.Category == 2).Select(x => _mapper.ParseProduct(x)).ToList();
+                case ProductCategory.Climbing:
+                    return _context.Products.AsNoTracking().Where(x => x.Category == 3).Select(x => _mapper.ParseProduct(x)).ToList();
+                case ProductCategory.Clothing:
+                    return _context.Products.AsNoTracking().Where(x => x.Category == 4).Select(x => _mapper.ParseProduct(x)).ToList();
+                case ProductCategory.Shoes:
+                    return _context.Products.AsNoTracking().Where(x => x.Category == 5).Select(x => _mapper.ParseProduct(x)).ToList();
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        public List<Inventory> GetInventories()
+        {
+            return _context.Inventories.AsNoTracking().Select(x => _mapper.ParseInventory(x)).ToList();
+        }
     }
 }

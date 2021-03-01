@@ -59,14 +59,19 @@ namespace OSBL
             return _repo.GetProductByID(num);
         }
 
-        public List<ProductCategory> GetProductCategories()
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Item> GetItems()
         {
             return _repo.GetItems();
+        }
+
+        public List<Product> GetProductsByCategories(ProductCategory pcat)
+        {
+            return _repo.GetProductsByCategories(pcat);
+        }
+
+        public List<Inventory> GetInventories()
+        {
+            return _repo.GetInventories();
         }
     }
 }

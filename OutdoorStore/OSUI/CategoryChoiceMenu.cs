@@ -2,17 +2,20 @@ using System;
 using Serilog;
 using OSModels;
 using System.Collections.Generic;
+using OSBL;
 
 namespace OSUI
 {
     public class CategoryChoiceMenu : IMenu
     {
-        public Location loc;
-        public ProductCategory pc;
+        private Location loc;
+        private ProductCategory pc;
+        private IStoreBL _repo;
 
-        public CategoryChoiceMenu(Location _loc)
+        public CategoryChoiceMenu(Location _loc, IStoreBL repo)
         {
             loc = _loc;
+            _repo = repo;
         }
 
         public void Start()
@@ -42,31 +45,31 @@ namespace OSUI
                     case "1":
                         //TODO:launch product menu
                         pc = ProductCategory.Backpacks;
-                        menu = new ProductListMenu(pc, loc);
+                        menu = new ProductListMenu(pc, loc, _repo);
                         menu.Start();
                         break;
                     case "2":
                         pc = ProductCategory.Camping;
-                        menu = new ProductListMenu(pc, loc);
+                        menu = new ProductListMenu(pc, loc, _repo);
                         menu.Start();
                         break;
                     case "3":
                         pc = ProductCategory.Climbing;
-                        menu = new ProductListMenu(pc, loc);
+                        menu = new ProductListMenu(pc, loc, _repo);
                         menu.Start();
                         break;
                     case "4":
                         pc = ProductCategory.Clothing;
-                        menu = new ProductListMenu(pc, loc);
+                        menu = new ProductListMenu(pc, loc, _repo);
                         menu.Start();
                         break;
                     case "5":
                         pc = ProductCategory.Shoes;
-                        menu = new ProductListMenu(pc, loc);
+                        menu = new ProductListMenu(pc, loc, _repo);
                         menu.Start();
                         break;
                     case "6":
-                        menu = new ProductListMenu(loc);
+                        menu = new ProductListMenu(loc, _repo);
                         menu.Start();
                         break;
                     case "0":

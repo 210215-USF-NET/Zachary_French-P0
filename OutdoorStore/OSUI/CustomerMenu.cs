@@ -76,8 +76,8 @@ namespace OSUI
                     {
                         if(num == i.OrderID)
                         {
-                            Console.WriteLine(_repo.GetProductByID(i.ProductID).ToString());
-                        } 
+                            Console.WriteLine(_repo.GetProductByID(i.ProductID).ToStringTabbed());
+                        }
                     }
                 }
             }
