@@ -13,6 +13,7 @@ namespace OSUI
         private IStoreBL _repo;
         private Customer _customer;
         List<Order> orders;
+        List<Product> products;
         List<Item> items;
         Boolean stay = true;
 
@@ -34,14 +35,11 @@ namespace OSUI
             do{
                 foreach(Order o in orders)
                 {
-                    int num = o.OrderID;
                     Console.WriteLine(o.ToString());
-                    foreach(Item i in items)
+                    products = GetProductsForOrder(o);
+                    foreach(Product p in products)
                     {
-                        if(num == i.OrderID)
-                        {
-                            Console.WriteLine(_repo.GetProductByID(i.ProductID).ToStringTabbed());
-                        }
+                        Console.WriteLine(p.ToStringTabbed());
                     }
                 }
 
@@ -82,6 +80,20 @@ namespace OSUI
             }
             return newlist;
         }
+
+        private List<Product> GetProductsForOrder(Order o)
+        {
+            products = new List<Product>();
+            foreach(Item itm in items)
+            {
+                if(o.OrderID == itm.OrderID)
+                {
+                    products.Add(_repo.GetProductByID(itm.ProductID));
+                }
+            }
+
+            return products;
+        }
         
         private int CalculateTotalPrice(Order o)
         {
@@ -101,7 +113,7 @@ namespace OSUI
 
         private List<Order> OrdersByDate()
         {
-            return orders.OrderBy(h => h.Date).ToList();
+            return orders.OrderBy(h => h.OrderID).ToList();
         }
         private List<Order> OrdersByCost()
         {
