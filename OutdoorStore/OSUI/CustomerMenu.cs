@@ -44,6 +44,8 @@ namespace OSUI
                     // menu.Start();
                     // break;
                     GetOrderHistory();
+                    Console.WriteLine("Press \"Enter\" to continue.");
+                    Console.ReadLine();
                     break;
                 case "0":
                     stay = false;

@@ -95,8 +95,8 @@ namespace OSModels
 
         public override string ToString()
         {
-            return String.Format("{0,-53} {1,7}\n{2,-53} {3,7}\n\n{4,-8} {5,50}\n{6,-8} {7,52}\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =", 
-                "Product Name", "Price", this.Name, this.Price, "Product ID", "Description", this.ShortName, this.Description);
+            return String.Format("{0,-83} {1,7}\n{2,-83} {3,7}\n\n{4,-80} {5,8}\n{6,-82} {7,8}\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =", 
+                "Product Name", "Price", this.Name, this.Price, "Description", "Product ID", this.Description, this.ShortName);
         }
     }
 }
