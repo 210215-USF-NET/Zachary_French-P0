@@ -1,2 +1,2 @@
 # Zachary_French-P0
-This is Zachary French's P0 application, called **Outdoor Store Shopping Guide**.
+Zach's Store Console Application, based on shopping with REI.
