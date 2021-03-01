@@ -53,6 +53,11 @@ namespace OSUI
                         {
                             Console.WriteLine("No Customer by that name found, check your spelling and try again!");
                         }
+                        else if ( foundCust.Name.Equals("Jerry Seinfeld"))
+                        {
+                            menu = ManagerMenu(_repo);
+                            menu.Start();
+                        }
                         else
                         {
                             Console.WriteLine($"Customer record for {foundCust.Name} found.");

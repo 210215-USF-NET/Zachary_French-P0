@@ -51,10 +51,10 @@ namespace OSUI
                 Console.WriteLine($"Or enter \"0\" to go back.");
                 string userInput = Console.ReadLine();
 
-                Console.WriteLine("<DEBUG>");
-                Console.WriteLine($"User Input: {userInput}");
-                Console.WriteLine($"store count: {StorefrontList.Count}");
-                Console.WriteLine("</DEBUG>");
+                // Console.WriteLine("<DEBUG>");
+                // Console.WriteLine($"User Input: {userInput}");
+                // Console.WriteLine($"store count: {StorefrontList.Count}");
+                // Console.WriteLine("</DEBUG>");
 
                 if (userInput.Equals("0"))
                 {

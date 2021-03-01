@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using OSBL;
 using OSModels;
+using System.Linq;
 using Serilog;
 using Serilog.Sinks.File;
 
@@ -11,21 +12,21 @@ namespace OSUI
     {
         Location loc;
         ProductCategory pc;
-        List<Product> plist;
+        List<Product> plist = new List<Product>();
         IStoreBL repo;
 
         public ProductListMenu(ProductCategory _pc, Location _loc, IStoreBL _repo)
         {
             pc = _pc;
             loc = _loc;
-            plist = _repo.GetProductsByCategories(_pc);
+            pListCat(loc, pc);
         }
 
         public ProductListMenu(Location _loc, IStoreBL _repo)
         {
             loc = _loc;
             repo = _repo;
-            plist = _repo.GetProducts();
+            pList(loc);
         }
 
         public void Start()
@@ -40,11 +41,42 @@ namespace OSUI
             string userInput = Console.ReadLine();
         }
 
-        // private void SetProdList()
-        // {
-        //     List<Inventory> invList = repo.GetInventories();
-        //     foreach()
-        // }
+        private void pList(Location _l)
+        {
+            List<Inventory> inventoryList = repo.GetInventories();
+            Product p;
+
+            foreach(Inventory i in inventoryList.Reverse<Inventory>())
+            {
+                if(i.LocationID == _l.ID)
+                {
+                    p = repo.GetProductByID(i.ProductID);
+                    plist.Add(p);
+                }
+            }
+        }
+        private void pListCat(Location _l, ProductCategory _cat)
+        {
+            try {
+            List<Inventory> invList = repo.GetInventories();
+            Product p;
+
+            foreach(Inventory i in invList.Reverse<Inventory>())
+            {
+                p = repo.GetProductByID(i.ProductID);
+                Console.WriteLine(p.Name);
+                if(i.LocationID == _l.ID && (int) p.Category == (int) _cat)
+                {
+                    plist.Add(p);
+                }
+            }
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Null Reference Exception :(");
+            }
+            
+        }
 
         public void PrintListing(Product p)
         {

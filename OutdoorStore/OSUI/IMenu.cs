@@ -2,6 +2,6 @@ namespace OSUI
 {
     public interface IMenu
     {
-         void Start();
+        void Start();
     }
 }
