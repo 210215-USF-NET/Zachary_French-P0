@@ -92,5 +92,12 @@ namespace OSDL
         {
             return _context.Inventories.AsNoTracking().Select(x => _mapper.ParseInventory(x)).ToList();
         }
+
+        public Item AddItem(Item newItem)
+        {
+            _context.OrderItems.Add(_mapper.ParseItem(newItem));
+            _context.SaveChanges();
+            return newItem;
+        }
     }
 }

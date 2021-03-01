@@ -40,13 +40,13 @@ namespace OSUI
                     menu.Start();
                     break;
                 case "2":
-                    // menu = new OrderListMenu(_repo);
-                    // menu.Start();
-                    // break;
-                    GetOrderHistory();
-                    Console.WriteLine("Press \"Enter\" to continue.");
-                    Console.ReadLine();
+                    menu = new OrderListMenu(_repo, _customer);
+                    menu.Start();
                     break;
+                    // GetOrderHistory();
+                    // Console.WriteLine("Press \"Enter\" to continue.");
+                    // Console.ReadLine();
+                    // break;
                 case "0":
                     stay = false;
                     break;
@@ -59,28 +59,6 @@ namespace OSUI
                 }
             }
             while(stay);
-        }
-
-        private void GetOrderHistory()
-        {
-            int num;
-            List<Order> orders = _repo.GetOrders();
-            List<Item> items = _repo.GetItems();
-            foreach(Order o in orders)
-            {
-                if (o.CustomerID == _customer.ID)
-                {
-                    num = o.OrderID;
-                    Console.WriteLine(o.ToString());
-                    foreach(Item i in items)
-                    {
-                        if(num == i.OrderID)
-                        {
-                            Console.WriteLine(_repo.GetProductByID(i.ProductID).ToStringTabbed());
-                        }
-                    }
-                }
-            }
         }
     }
 }

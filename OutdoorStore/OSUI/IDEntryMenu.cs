@@ -55,7 +55,7 @@ namespace OSUI
                         }
                         else if ( foundCust.Name.Equals("Jerry Seinfeld"))
                         {
-                            menu = ManagerMenu(_repo);
+                            menu = new ManagerMenu(_repo);
                             menu.Start();
                         }
                         else

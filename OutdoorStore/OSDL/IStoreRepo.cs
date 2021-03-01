@@ -10,11 +10,12 @@ namespace OSDL
         Customer GetCustomerByName(string name);
         Order AddOrder(Order order);
         List<Order> GetOrders();
+        List<Item> GetItems();
+        Item AddItem(Item newItem);
         List<Location> GetLocations();
         List<Product> GetProducts();
         List<Product> GetProductsByCategories(ProductCategory pcat);
         Product GetProductByID(int num);
-        List<Item> GetItems();
         List<Inventory> GetInventories();
     }
 }

@@ -30,6 +30,15 @@ namespace OSDL
             throw new NotImplementedException();
         }
 
+        public List<Item> GetItems()
+        {
+            throw new NotImplementedException();
+        }
+        public Item AddItem(Item newItem)
+        {
+            throw new NotImplementedException();
+        }
+        
         public List<Location> GetLocations()
         {
             throw new NotImplementedException();
@@ -46,11 +55,6 @@ namespace OSDL
         }
 
         public List<Product> GetProductsByCategories(ProductCategory pcat)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public List<Item> GetItems()
         {
             throw new NotImplementedException();
         }
