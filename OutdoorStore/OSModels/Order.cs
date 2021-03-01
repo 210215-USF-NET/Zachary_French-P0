@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace OSModels
@@ -7,7 +8,7 @@ namespace OSModels
         private int orderID;
         private int customerID;
         private int locationID;
-        private string date;
+        private DateTime date;
         private int price;
         
         public int OrderID {
@@ -40,7 +41,7 @@ namespace OSModels
                 locationID = value;
             }
         }
-        public string Date {
+        public DateTime Date {
             get{
                 return date;
             } 
@@ -61,44 +62,14 @@ namespace OSModels
             }
         }
 
-        //Convenience fields
-        private string customerName;
-        private List<Product> plist;
-        private int total;
-        public string CustomerName {
-            get{
-                return customerName;
-            } 
-            set {
-                if(value.Equals(null))
-                    {throw new System.Exception();} 
-                customerName = value;
-            }
-        }
-        public List<Product> ProductList {
-            get{
-                return plist;
-            } 
-            set {
-                if(value.Equals(null))
-                    {throw new System.Exception();} 
-                plist = value;
-            }
-        }
-        public int Total {
-            get{
-                return total;
-            } 
-            set {
-                if(value.Equals(null))
-                    {throw new System.Exception();} 
-                total = value;
-            }
+        public void AddToTotalPrice(Product product)
+        {
+            this.TotalPrice += product.Price;
         }
 
         public override string ToString()
         {
-            return $"Order#: {OrderID}";
+            return $"Order#: {OrderID}\nTotal Cost: {TotalPrice}";
         }
     }
 }

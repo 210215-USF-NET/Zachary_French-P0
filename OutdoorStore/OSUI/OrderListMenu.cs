@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using OSBL;
 using OSModels;
+using Serilog;
 using Model = OSModels;
 
 namespace OSUI
@@ -23,7 +25,7 @@ namespace OSUI
 
             for(int i = 0; i < orders.Count; i++)
             {
-                orders[i] = CalculateTotalPrice(orders[i]);
+                orders[i].TotalPrice = CalculateTotalPrice(orders[i]);
             }
         }
 
@@ -42,6 +44,27 @@ namespace OSUI
                         }
                     }
                 }
+
+                Console.WriteLine("Sort by: [1] Date, [2] Cost - [0] Back");
+                string str = Console.ReadLine();
+                switch(str)
+                {
+                    case "1":
+                        orders = OrdersByDate();
+                        break;
+                    case "2":
+                        orders = OrdersByCost();
+                        break;
+                    case "0":
+                        stay = false;
+                        break;
+                    default:
+                        Log.Error("Invalid navigation selection (Sorted by something other than Date or Cost)");
+                        Console.WriteLine("Invalid choice - Please enter \"1\" or \"2\".");
+                        Console.WriteLine("Press \"Enter\" to continue.");
+                        Console.ReadLine();
+                        break;
+                }
             } while(stay);
         }
 
@@ -55,21 +78,12 @@ namespace OSUI
                 if (o.CustomerID == _customer.ID)
                 {
                     newlist.Add(o);
-                    // num = o.OrderID;
-                    // Console.WriteLine(o.ToString());
-                    // foreach(Item i in items)
-                    // {
-                    //     if(num == i.OrderID)
-                    //     {
-                    //         Console.WriteLine(_repo.GetProductByID(i.ProductID).ToStringTabbed());
-                    //     }
-                    // }
                 }
             }
             return newlist;
         }
         
-        private Order CalculateTotalPrice(Order o)
+        private int CalculateTotalPrice(Order o)
         {
             int id = o.OrderID;
             int TotalCost = 0;
@@ -82,17 +96,16 @@ namespace OSUI
                 }
             }
             
-            o.TotalPrice = TotalCost;
-            return o;
+            return TotalCost;
         }
 
-        private void SortByDate()
+        private List<Order> OrdersByDate()
         {
-            orders.Sort()
+            return orders.OrderBy(h => h.Date).ToList();
         }
-        private void SortByPrice()
+        private List<Order> OrdersByCost()
         {
-            
+            return orders.OrderBy(h => h.TotalPrice).ToList();
         }
     }
 }

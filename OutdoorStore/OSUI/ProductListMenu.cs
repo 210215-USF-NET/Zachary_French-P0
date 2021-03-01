@@ -57,7 +57,6 @@ namespace OSUI
         }
         private void pListCat(Location _l, ProductCategory _cat)
         {
-            try {
             List<Inventory> invList = repo.GetInventories();
             Product p;
 
@@ -70,21 +69,15 @@ namespace OSUI
                     plist.Add(p);
                 }
             }
-            }
-            catch (NullReferenceException)
-            {
-                Console.WriteLine("Null Reference Exception :(");
-            }
-            
         }
 
         public void PrintListing(Product p)
         {
-            Console.WriteLine(String.Format("{0,-80} {1,10}", "Product Name", "Price"));
-            Console.WriteLine(String.Format("{0,-80} {1,10}\n", p.Name, p.Price));
-            Console.WriteLine(String.Format("{0,-80} {1,8}", "Description", "Product ID"));
-            Console.WriteLine(String.Format("{0,-82} {1,8}", p.Description, p.ShortName));
-            Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
+            Console.WriteLine(String.Format("{0,-70} {1,30}", "Product Name", "Price"));
+            Console.WriteLine(String.Format("{0,-70} {1,30}\n", p.Name, p.Price));
+            Console.WriteLine(String.Format("{0,-90} {1,10}", "Description", "Product ID"));
+            Console.WriteLine(String.Format("{0,-90} {1,10}", p.Description, p.ShortName));
+            Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
         }
     }
 }

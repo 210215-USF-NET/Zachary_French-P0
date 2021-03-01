@@ -95,13 +95,13 @@ namespace OSModels
 
         public override string ToString()
         {
-            return String.Format("{0,-80} {1,10}\n{2,-80} {3,10}\n\n{4,-80} {5,8}\n{6,-82} {7,8}\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =", 
+            return String.Format("{0,-70} {1,30}\n{2,-70} {3,30}\n\n{4,-90} {5,10}\n{6,-90} {7,10}\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =", 
                 "Product Name", "Price", this.Name, this.Price, "Description", "Product ID", this.Description, this.ShortName);
         }
 
         public string ToStringTabbed()
         {
-            return String.Format("\t{0,-83} {1,7}\n\t{2,-83} {3,7}\n\n\t{4,-80} {5,8}\n\t{6,-82} {7,8}\n\t= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =", 
+            return String.Format("\t{0,-70} {1,30}\n\t{2,-70} {3,30}\n\n\t{4,-90} {5,10}\n\t{6,-90} {7,10}\n\t= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =", 
                 "Product Name", "Price", this.Name, this.Price, "Description", "Product ID", this.Description, this.ShortName);
         }
     }
