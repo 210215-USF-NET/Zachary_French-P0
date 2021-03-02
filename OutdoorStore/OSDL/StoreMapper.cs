@@ -13,14 +13,16 @@ namespace OSDL
             return new Model.Customer {
                 Name = customer.Name,
                 Address = customer.Address,
-                ID = customer.Id
+                ID = customer.Id,
+                Phone = customer.Phone
             };
         }
         public Entity.Customer ParseCustomer(Model.Customer customer)
         {
             return new Entity.Customer {
                 Name = customer.Name,
-                Address = customer.Address
+                Address = customer.Address,
+                Phone = customer.Phone
             };
         }
 
@@ -29,18 +31,18 @@ namespace OSDL
             return new Model.Order {
                 CustomerID = (int) order.CustId,
                 OrderID = (int) order.Id,
-                LocationID = (int) order.LocId
+                LocationID = (int) order.LocId,
+                Date = order.Date
             };
-            // throw new NotImplementedException();
         }
         public Entity.Order ParseOrder(Model.Order order)
         {
             return new Entity.Order {
                 CustId = order.CustomerID,
                 Id = order.OrderID,
-                LocId = order.LocationID
+                LocId = order.LocationID,
+                Date = order.Date
             };
-            // throw new NotImplementedException();
         }
 
         public Model.Location ParseLocation(Entity.Location location)
@@ -119,6 +121,27 @@ namespace OSDL
                 Quantity = inv.Quantity,
                 LocationId = (int) inv.LocationID,
                 ProductId = (int) inv.ProductID
+            };
+        }
+
+        public Entity.Cart ParseCart(Model.Cart cart)
+        {
+            return new Entity.Cart {
+                Id = cart.ID,
+                CustId = cart.CustID,
+                LocId = cart.LocID,
+                ProductId = cart.ProductID,
+                Quantity = cart.Quantity
+            };
+        }
+        public Model.Cart ParseCart(Entity.Cart cart)
+        {
+            return new Model.Cart {
+                ID = cart.Id,
+                CustID = cart.CustId,
+                LocID = cart.LocId,
+                ProductID = cart.ProductId,
+                Quantity = cart.Quantity
             };
         }
     }

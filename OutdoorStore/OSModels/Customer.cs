@@ -12,7 +12,7 @@ namespace OSModels
         private string name;
         private string address;
         private int id;
-        // private string phone;
+        private string phone;
 
 
         public string Name {
@@ -54,18 +54,18 @@ namespace OSModels
             }
         }
 
-        // public string Phone {
-        //     get{
-        //         return phone;
-        //     } 
-        //     set {
-        //         if(value.Equals(null)) 
-        //         {
-        //             ThrowNullException();
-        //         }
-        //         phone = value;
-        //     }
-        // }
+        public string Phone {
+            get{
+                return phone;
+            } 
+            set {
+                if(value.Equals(null)) 
+                {
+                    ThrowNullException();
+                }
+                phone = value;
+            }
+        }
 
         private void ThrowNullException()
         {
