@@ -9,6 +9,7 @@ namespace OSDL.Entities
     {
         public Product()
         {
+            Carts = new HashSet<Cart>();
             Inventories = new HashSet<Inventory>();
             OrderItems = new HashSet<OrderItem>();
         }
@@ -17,10 +18,11 @@ namespace OSDL.Entities
         public string Name { get; set; }
         public string Shortname { get; set; }
         public string Description { get; set; }
-        public int? Category { get; set; }
+        public int Category { get; set; }
         public int Price { get; set; }
 
         public virtual ProductCategory CategoryNavigation { get; set; }
+        public virtual ICollection<Cart> Carts { get; set; }
         public virtual ICollection<Inventory> Inventories { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }

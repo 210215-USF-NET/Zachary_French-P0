@@ -17,6 +17,7 @@ namespace OSDL.Entities
         {
         }
 
+        public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
@@ -28,6 +29,39 @@ namespace OSDL.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Cart>(entity =>
+            {
+                entity.ToTable("cart");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CustId).HasColumnName("custID");
+
+                entity.Property(e => e.LocId).HasColumnName("locID");
+
+                entity.Property(e => e.ProductId).HasColumnName("productID");
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.Carts)
+                    .HasForeignKey(d => d.CustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__cart__custID__55BFB948");
+
+                entity.HasOne(d => d.Loc)
+                    .WithMany(p => p.Carts)
+                    .HasForeignKey(d => d.LocId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__cart__locID__56B3DD81");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Carts)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__cart__productID__57A801BA");
+            });
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -44,6 +78,12 @@ namespace OSDL.Entities
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("name");
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false)
+                    .HasColumnName("phone");
             });
 
             modelBuilder.Entity<Inventory>(entity =>
@@ -59,12 +99,14 @@ namespace OSDL.Entities
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Inventories)
                     .HasForeignKey(d => d.LocationId)
-                    .HasConstraintName("FK__Inventori__locat__00DF2177");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Inventori__locat__4F12BBB9");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Inventories)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__Inventori__produ__7FEAFD3E");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Inventori__produ__4E1E9780");
             });
 
             modelBuilder.Entity<Location>(entity =>
@@ -90,17 +132,23 @@ namespace OSDL.Entities
 
                 entity.Property(e => e.CustId).HasColumnName("custID");
 
+                entity.Property(e => e.Date)
+                    .HasColumnType("datetime")
+                    .HasColumnName("date");
+
                 entity.Property(e => e.LocId).HasColumnName("locID");
 
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustId)
-                    .HasConstraintName("FK__Orders__custID__65370702");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__custID__4A4E069C");
 
                 entity.HasOne(d => d.Loc)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.LocId)
-                    .HasConstraintName("FK__Orders__locID__662B2B3B");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__locID__4B422AD5");
             });
 
             modelBuilder.Entity<OrderItem>(entity =>
@@ -116,12 +164,14 @@ namespace OSDL.Entities
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__OrderItem__order__04AFB25B");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__OrderItem__order__51EF2864");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__OrderItem__produ__05A3D694");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__OrderItem__produ__52E34C9D");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -153,7 +203,8 @@ namespace OSDL.Entities
                 entity.HasOne(d => d.CategoryNavigation)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.Category)
-                    .HasConstraintName("FK__Products__catego__74794A92");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Products__catego__4589517F");
             });
 
             modelBuilder.Entity<ProductCategory>(entity =>

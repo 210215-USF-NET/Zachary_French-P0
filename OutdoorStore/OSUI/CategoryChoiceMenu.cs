@@ -32,8 +32,8 @@ namespace OSUI
                 Console.WriteLine("=================");
                 Console.WriteLine("");
                 Console.WriteLine("[1] Backpacks");
-                Console.WriteLine("[2] Camping_Gear");
-                Console.WriteLine("[3] Climbing_Gear");
+                Console.WriteLine("[2] Camping");
+                Console.WriteLine("[3] Climbing");
                 Console.WriteLine("[4] Clothing");
                 Console.WriteLine("[5] Shoes");
                 Console.WriteLine("[6] All Categories");

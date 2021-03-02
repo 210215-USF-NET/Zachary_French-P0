@@ -19,7 +19,8 @@ namespace OSUI
         {
             pc = _pc;
             loc = _loc;
-            pListCat(loc, pc);
+            repo = _repo;
+            pList(loc, pc);  
         }
 
         public ProductListMenu(Location _loc, IStoreBL _repo)
@@ -43,10 +44,10 @@ namespace OSUI
 
         private void pList(Location _l)
         {
-            List<Inventory> inventoryList = repo.GetInventories();
+            List<Inventory> invList = repo.GetInventories();
             Product p;
 
-            foreach(Inventory i in inventoryList.Reverse<Inventory>())
+            foreach(Inventory i in invList.Reverse<Inventory>())
             {
                 if(i.LocationID == _l.ID)
                 {
@@ -55,7 +56,7 @@ namespace OSUI
                 }
             }
         }
-        private void pListCat(Location _l, ProductCategory _cat)
+        private void pList(Location _l, ProductCategory _cat)
         {
             List<Inventory> invList = repo.GetInventories();
             Product p;
@@ -63,8 +64,7 @@ namespace OSUI
             foreach(Inventory i in invList.Reverse<Inventory>())
             {
                 p = repo.GetProductByID(i.ProductID);
-                Console.WriteLine(p.Name);
-                if(i.LocationID == _l.ID && (int) p.Category == (int) _cat)
+                if(i.LocationID == _l.ID && (int) p.Category == (int) (_cat+1))
                 {
                     plist.Add(p);
                 }
