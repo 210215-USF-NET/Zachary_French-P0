@@ -11,11 +11,13 @@ namespace OSUI
         private Location loc;
         private ProductCategory pc;
         private IStoreBL _repo;
+        Customer _c;
 
-        public CategoryChoiceMenu(Location _loc, IStoreBL repo)
+        public CategoryChoiceMenu(Location _loc, IStoreBL repo, Customer c)
         {
             loc = _loc;
             _repo = repo;
+            _c = c;
         }
 
         public void Start()
@@ -45,31 +47,31 @@ namespace OSUI
                     case "1":
                         //TODO:launch product menu
                         pc = ProductCategory.Backpacks;
-                        menu = new ProductListMenu(pc, loc, _repo);
+                        menu = new ProductListMenu(pc, loc, _repo, _c);
                         menu.Start();
                         break;
                     case "2":
                         pc = ProductCategory.Camping;
-                        menu = new ProductListMenu(pc, loc, _repo);
+                        menu = new ProductListMenu(pc, loc, _repo, _c);
                         menu.Start();
                         break;
                     case "3":
                         pc = ProductCategory.Climbing;
-                        menu = new ProductListMenu(pc, loc, _repo);
+                        menu = new ProductListMenu(pc, loc, _repo, _c);
                         menu.Start();
                         break;
                     case "4":
                         pc = ProductCategory.Clothing;
-                        menu = new ProductListMenu(pc, loc, _repo);
+                        menu = new ProductListMenu(pc, loc, _repo, _c);
                         menu.Start();
                         break;
                     case "5":
                         pc = ProductCategory.Shoes;
-                        menu = new ProductListMenu(pc, loc, _repo);
+                        menu = new ProductListMenu(pc, loc, _repo, _c);
                         menu.Start();
                         break;
                     case "6":
-                        menu = new ProductListMenu(loc, _repo);
+                        menu = new ProductListMenu(loc, _repo, _c);
                         menu.Start();
                         break;
                     case "0":

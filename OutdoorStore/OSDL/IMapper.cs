@@ -25,5 +25,8 @@ namespace OSDL
 
         Model.Inventory ParseInventory(Entity.Inventory inv);
         Entity.Inventory ParseInventory(Model.Inventory inv);
+
+        Model.Cart ParseCart(Entity.Cart cart);
+        Entity.Cart ParseCart(Model.Cart cart);
     }
 }

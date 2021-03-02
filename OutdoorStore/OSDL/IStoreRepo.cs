@@ -17,5 +17,7 @@ namespace OSDL
         List<Product> GetProductsByCategories(ProductCategory pcat);
         Product GetProductByID(int num);
         List<Inventory> GetInventories();
+        Cart AddCart(Cart newCart);
+        List<Cart> GetCarts();
     }
 }

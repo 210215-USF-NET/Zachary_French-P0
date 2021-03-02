@@ -73,5 +73,15 @@ namespace OSBL
         {
             return _repo.GetInventories();
         }
+
+        public Cart AddCart(Cart newCart)
+        {
+            return _repo.AddCart(newCart);
+        }
+
+        public List<Cart> GetCarts()
+        {
+            return _repo.GetCarts();
+        }
     }
 }

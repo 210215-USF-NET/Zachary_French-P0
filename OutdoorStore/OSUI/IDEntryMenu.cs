@@ -97,6 +97,8 @@ namespace OSUI
             c.Name = Console.ReadLine();
             Console.WriteLine("Enter your address:");
             c.Address = Console.ReadLine();
+            Console.WriteLine("Enter your phone:");
+            c.Phone = Console.ReadLine();
 
             return c;
         }

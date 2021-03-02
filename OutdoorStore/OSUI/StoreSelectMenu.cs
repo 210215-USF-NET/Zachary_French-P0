@@ -9,10 +9,12 @@ namespace OSUI
     public class StoreSelectMenu : IMenu
     {
         private IStoreBL _repo;
+        private Customer _customer;
         public List<Location> StorefrontList;
-        public StoreSelectMenu(IStoreBL repo)
+        public StoreSelectMenu(IStoreBL repo, Customer c)
         {
             _repo = repo;
+            _customer = c;
             StorefrontList = _repo.GetLocations();
         }
         
@@ -21,22 +23,6 @@ namespace OSUI
             Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
             Boolean stay = true, badEntryFlag = true;
             IMenu menu;
-
-            //TODO: get list of stores from database
-
-            //TEST CODE (I KNOW I SHOULD BE UNIT TESTING BUT OH WELL)
-            //-------------------------------
-            // Location newYork = new Location();
-            // newYork.Name = "New York";
-            // Location chicago = new Location();
-            // chicago.Name = "Chicago";
-            // Location losAngeles = new Location();
-            // losAngeles.Name = "Los Angeles";
-
-            // StorefrontList.Add(newYork);
-            // StorefrontList.Add(chicago);
-            // StorefrontList.Add(losAngeles);
-            //-------------------------------
 
             do
             {
@@ -51,11 +37,6 @@ namespace OSUI
                 Console.WriteLine($"Or enter \"0\" to go back.");
                 string userInput = Console.ReadLine();
 
-                // Console.WriteLine("<DEBUG>");
-                // Console.WriteLine($"User Input: {userInput}");
-                // Console.WriteLine($"store count: {StorefrontList.Count}");
-                // Console.WriteLine("</DEBUG>");
-
                 if (userInput.Equals("0"))
                 {
                     stay = false;
@@ -67,7 +48,7 @@ namespace OSUI
                     if (userInput.Equals(store.Name))
                     {
                         badEntryFlag = false;
-                        menu = new CategoryChoiceMenu(store, _repo);
+                        menu = new CategoryChoiceMenu(store, _repo, _customer);
                         menu.Start();
                         break;
                     }

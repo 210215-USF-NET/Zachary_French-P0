@@ -63,5 +63,15 @@ namespace OSDL
         {
             throw new NotImplementedException();
         }
+
+        public Cart AddCart(Cart newCart)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Cart> GetCarts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

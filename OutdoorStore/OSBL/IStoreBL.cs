@@ -16,5 +16,7 @@ namespace OSBL
         Product GetProductByID(int num);
         List<Item> GetItems();
         List<Inventory> GetInventories();
+        Cart AddCart(Cart newCart);
+        List<Cart> GetCarts();
     }
 }

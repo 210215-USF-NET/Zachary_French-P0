@@ -99,5 +99,17 @@ namespace OSDL
             _context.SaveChanges();
             return newItem;
         }
+
+        public Cart AddCart(Cart newCart)
+        {
+            _context.Carts.Add(_mapper.ParseCart(newCart));
+            _context.SaveChanges();
+            return newCart;
+        }
+
+        public List<Cart> GetCarts()
+        {
+            return _context.Carts.AsNoTracking().Select(x => _mapper.ParseCart(x)).ToList();
+        }
     }
 }

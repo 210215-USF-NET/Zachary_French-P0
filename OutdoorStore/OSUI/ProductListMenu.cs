@@ -13,19 +13,22 @@ namespace OSUI
         Location loc;
         ProductCategory pc;
         List<Product> plist = new List<Product>();
+        Customer customer;
         IStoreBL repo;
 
-        public ProductListMenu(ProductCategory _pc, Location _loc, IStoreBL _repo)
+        public ProductListMenu(ProductCategory _pc, Location _loc, IStoreBL _repo, Customer _c)
         {
             pc = _pc;
             loc = _loc;
+            customer = _c;
             repo = _repo;
             pList(loc, pc);  
         }
 
-        public ProductListMenu(Location _loc, IStoreBL _repo)
+        public ProductListMenu(Location _loc, IStoreBL _repo, Customer _c)
         {
             loc = _loc;
+            customer = _c;
             repo = _repo;
             pList(loc);
         }
@@ -40,6 +43,22 @@ namespace OSUI
 
             Console.WriteLine("Please enter the Product ID for the product you'd like to add to your cart:");
             string userInput = Console.ReadLine();
+
+            foreach(Product p in plist)
+            {
+                if (userInput == p.ShortName)
+                {
+                    Console.WriteLine("How many would you like to buy?");
+                    int num = int.Parse(Console.ReadLine()); //=================TODO:INPUT VALIDATION
+                    repo.AddCart( new Cart {
+                        ProductID = p.ID,
+                        CustID = customer.ID,
+                        LocID = loc.ID,
+                        Quantity = num
+                    });
+                    break;
+                }
+            }
         }
 
         private void pList(Location _l)

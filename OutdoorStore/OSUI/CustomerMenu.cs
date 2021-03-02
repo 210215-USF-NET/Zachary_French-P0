@@ -36,7 +36,7 @@ namespace OSUI
                 switch(custInput)
                 {
                     case "1":
-                    menu = new StoreSelectMenu(_repo);
+                    menu = new StoreSelectMenu(_repo, _customer);
                     menu.Start();
                     break;
                 case "2":

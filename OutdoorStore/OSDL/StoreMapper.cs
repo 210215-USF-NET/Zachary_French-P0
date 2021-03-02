@@ -124,16 +124,6 @@ namespace OSDL
             };
         }
 
-        public Entity.Cart ParseCart(Model.Cart cart)
-        {
-            return new Entity.Cart {
-                Id = cart.ID,
-                CustId = cart.CustID,
-                LocId = cart.LocID,
-                ProductId = cart.ProductID,
-                Quantity = cart.Quantity
-            };
-        }
         public Model.Cart ParseCart(Entity.Cart cart)
         {
             return new Model.Cart {
@@ -141,6 +131,16 @@ namespace OSDL
                 CustID = cart.CustId,
                 LocID = cart.LocId,
                 ProductID = cart.ProductId,
+                Quantity = cart.Quantity
+            };
+        }
+        public Entity.Cart ParseCart(Model.Cart cart)
+        {
+            return new Entity.Cart {
+                Id = cart.ID,
+                CustId = cart.CustID,
+                LocId = cart.LocID,
+                ProductId = cart.ProductID,
                 Quantity = cart.Quantity
             };
         }
