@@ -23,12 +23,6 @@ namespace OSBL
             return _repo.GetCustomers();
         }
 
-        // public void DeleteCustomer(Customer CustForDeletion)
-        // {
-        //     throw new NotImplementedException();
-        //     //_repo.DeleteHero(hero2BDeleted);
-        // }
-
         public Customer GetCustomerByName(string name)
         {
             //Todo: check if the name given is not null or empty string 
@@ -82,6 +76,16 @@ namespace OSBL
         public List<Cart> GetCarts()
         {
             return _repo.GetCarts();
+        }
+
+        public Item AddItem(Item newItem)
+        {
+            return _repo.AddItem(newItem);
+        }
+
+        public void EmptyCart()
+        {
+            _repo.EmptyCart();
         }
     }
 }

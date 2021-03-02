@@ -104,12 +104,18 @@ namespace OSDL
         {
             _context.Carts.Add(_mapper.ParseCart(newCart));
             _context.SaveChanges();
+            _context.ChangeTracker.Clear();
             return newCart;
         }
 
         public List<Cart> GetCarts()
         {
             return _context.Carts.AsNoTracking().Select(x => _mapper.ParseCart(x)).ToList();
+        }
+
+        public void EmptyCart()
+        {
+            _context.Carts.RemoveRange(_context.Carts.AsNoTracking().Select(x => x));
         }
     }
 }

@@ -19,5 +19,6 @@ namespace OSDL
         List<Inventory> GetInventories();
         Cart AddCart(Cart newCart);
         List<Cart> GetCarts();
+        void EmptyCart();
     }
 }

@@ -73,5 +73,10 @@ namespace OSDL
         {
             throw new NotImplementedException();
         }
+
+        public void EmptyCart()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

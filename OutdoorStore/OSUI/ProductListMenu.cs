@@ -56,6 +56,13 @@ namespace OSUI
                         LocID = loc.ID,
                         Quantity = num
                     });
+                    if(num == 1)
+                    {
+                        Console.WriteLine("1 product added to cart.");
+                    }
+                    else{
+                        Console.WriteLine($"{num} products added to cart.");
+                    }
                     break;
                 }
             }

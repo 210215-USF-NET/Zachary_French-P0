@@ -113,7 +113,7 @@ namespace OSUI
 
         private List<Order> OrdersByDate()
         {
-            return orders.OrderBy(h => h.OrderID).ToList();
+            return orders.OrderBy(h => h.Date).ToList();
         }
         private List<Order> OrdersByCost()
         {

@@ -15,8 +15,10 @@ namespace OSBL
         List<Product> GetProductsByCategories(ProductCategory pcat);
         Product GetProductByID(int num);
         List<Item> GetItems();
+        Item AddItem(Item newItem);
         List<Inventory> GetInventories();
         Cart AddCart(Cart newCart);
         List<Cart> GetCarts();
+        void EmptyCart();
     }
 }
