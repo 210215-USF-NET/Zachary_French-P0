@@ -6,7 +6,7 @@ namespace OSBL
     public interface IStoreBL
     {
         List<Customer> GetCustomers();
-        void AddCustomer(Customer c);
+        Customer AddCustomer(Customer c);
         Customer GetCustomerByName(string name);
         void AddOrder(Order order);
         List<Order> GetOrders();

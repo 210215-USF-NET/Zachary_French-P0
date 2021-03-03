@@ -77,7 +77,7 @@ namespace OSModels
 
         public override string ToString()
         {
-            return $"Customer: {name}\n\t ID: {id} Home: {address}";
+            return $"Customer: {name}\n\tID: {id} - Home: {address} - Phone {phone}";
         }
     }
 }

@@ -33,7 +33,7 @@ namespace OSDL
 
         public Model.Customer GetCustomerByName(string name)
         {
-            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Name == name);
+            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Name.ToLower().Equals(name.ToLower()));
         }
 
         public Model.Order AddOrder(Model.Order newOrder)
@@ -105,10 +105,17 @@ namespace OSDL
 
         public Cart AddCart(Cart newCart)
         {
+            try{
             _context.Carts.Add(_mapper.ParseCart(newCart));
             _context.SaveChanges();
             _context.ChangeTracker.Clear();
             return newCart;
+            }
+            catch(Microsoft.EntityFrameworkCore.DbUpdateException)
+            {
+                Console.WriteLine("Are you really sure? Why don't you think about it for a second.");
+                return newCart;
+            }
         }
 
         public List<Cart> GetCarts()

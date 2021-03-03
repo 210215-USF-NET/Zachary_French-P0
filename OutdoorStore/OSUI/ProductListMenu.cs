@@ -35,13 +35,15 @@ namespace OSUI
 
         public void Start()
         {
-            Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
+
+            Console.WriteLine("\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
             foreach(Product p in plist)
             {
                 Console.WriteLine(p.ToString());
             }
 
-            Console.WriteLine("Please enter the Product ID for the product you'd like to add to your cart:");
+            Console.WriteLine("Please enter the Product ID for the product you'd like to add to your cart:\n(or enter \"0\" to go back)");
             string userInput = Console.ReadLine();
 
             foreach(Product p in plist)
@@ -66,6 +68,10 @@ namespace OSUI
                     break;
                 }
             }
+            // if(!userInput.Equals("0"))
+            // {
+            //     Console.WriteLine("Invalid Product ID");
+            // }
         }
 
         private void pList(Location _l)

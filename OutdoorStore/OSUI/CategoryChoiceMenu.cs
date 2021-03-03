@@ -22,7 +22,7 @@ namespace OSUI
 
         public void Start()
         {
-            Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
             Boolean stay = true;
             IMenu menu;
             _repo.EmptyCart();
@@ -46,7 +46,6 @@ namespace OSUI
                 switch(userInput)
                 {
                     case "1":
-                        //TODO:launch product menu
                         pc = ProductCategory.Backpacks;
                         menu = new ProductListMenu(pc, loc, _repo, _c);
                         menu.Start();
@@ -123,6 +122,7 @@ namespace OSUI
                             Date = DateTime.Now,
                         };
                         _repo.AddOrder(o);
+                        Log.Information("Order record added to database.");
 
                         foreach(Cart c in customerCart)
                         {
@@ -133,6 +133,7 @@ namespace OSUI
                                 Quantity = c.Quantity
                             };
                             _repo.AddItem(i);
+                            Log.Information("OrderItem record added to database.");
                         }
                         _repo.EmptyCart();
                         checkoutFlag = false;

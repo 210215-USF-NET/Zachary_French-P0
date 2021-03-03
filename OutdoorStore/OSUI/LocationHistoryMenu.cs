@@ -25,7 +25,9 @@ namespace OSUI
 
         public void Start()
         {
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
             Boolean stay = true;
+
             do{
                 Console.WriteLine("Which Order History would you like to check?");
                 Console.WriteLine("= = = = = = = =");
@@ -83,7 +85,7 @@ namespace OSUI
                         stay = false;
                         break;
                     default:
-                        Log.Error("Invalid navigation selection (Sorted by something other than Date or Cost)");
+                        Log.Error("Invalid Navigation Selection (Sorted by something other than Date or Cost)");
                         Console.WriteLine("Invalid choice - Please enter \"1\" or \"2\".");
                         Console.WriteLine("Press \"Enter\" to continue.");
                         Console.ReadLine();

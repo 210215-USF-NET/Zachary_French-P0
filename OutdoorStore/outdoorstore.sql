@@ -149,8 +149,6 @@ select * from cart
 select * from productcategories
 GO;
 
---Execute selectalldatabases
-exec selectalldatabases;
 
 --drop procedure
 drop procedure selectalldatabases;

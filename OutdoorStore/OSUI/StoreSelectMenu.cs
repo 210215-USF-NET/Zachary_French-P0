@@ -20,7 +20,7 @@ namespace OSUI
         
         public void Start()
         {
-            Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
             Boolean stay = true, badEntryFlag = true;
             IMenu menu;
 
@@ -44,7 +44,6 @@ namespace OSUI
                 }
                 foreach(Location store in StorefrontList)
                 {
-                    Console.WriteLine(store.Name);
                     if (userInput.Equals(store.Name))
                     {
                         badEntryFlag = false;
@@ -63,7 +62,5 @@ namespace OSUI
                 }
             } while (stay);
         }
-
-        
     }
 }

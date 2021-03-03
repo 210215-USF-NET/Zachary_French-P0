@@ -32,6 +32,8 @@ namespace OSUI
 
         public void Start()
         {
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
+            
             do{
                 foreach(Order o in orders)
                 {

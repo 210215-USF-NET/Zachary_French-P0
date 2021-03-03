@@ -15,7 +15,7 @@ namespace OSUI
 
         public void Start()
         {
-            Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
             Boolean stay = true;
             IMenu menu;
             do{
@@ -29,41 +29,62 @@ namespace OSUI
                 Console.WriteLine("[2] View each location's current Inventory");
                 Console.WriteLine("[3] Restock an item");
                 Console.WriteLine("[4] Display all Products");
+                Console.WriteLine("[5] Find Customer by Name");
                 Console.WriteLine("[0] Back");
                 string managerInput = Console.ReadLine();
                 switch(managerInput)
                 {
                     case "1":
-                    menu = new LocationHistoryMenu(_repo);
-                    menu.Start();
-                    break;
-                case "2":
-                    menu = new LocationInventoryMenu(_repo);
-                    menu.Start();
-                    break;
-                case "3":
-                    try{ updateInventory(); }
-                    catch(Exception)
-                    {
-                        Console.WriteLine("Please try again!");
-                    }
-                    break;
-                case "4":
-                    Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
-                    foreach( Product p in _repo.GetProducts())
-                    {
-                        Console.WriteLine(p.ToString());
-                    }
-                    break;
-                case "0":
-                    stay = false;
-                    break;
-                default:
-                    Log.Error("Invalid navigation selection - Manager Menu");
-                    Console.WriteLine("Invalid choice - Please enter \"1\" or \"2\".");
-                    Console.WriteLine("Press \"Enter\" to continue.");
-                    Console.ReadLine();
-                    break;
+                        menu = new LocationHistoryMenu(_repo);
+                        menu.Start();
+                        break;
+                    case "2":
+                        menu = new LocationInventoryMenu(_repo);
+                        menu.Start();
+                        break;
+                    case "3":
+                        try{ updateInventory(); }
+                        catch(Exception)
+                        {
+                            Console.WriteLine("Please try again!");
+                        }
+                        break;
+                    case "4":
+                        Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
+                        foreach( Product p in _repo.GetProducts())
+                        {
+                            Console.WriteLine(p.ToString());
+                        }
+                        break;
+                    case "5":
+                        Console.WriteLine("Please enter Customer name:");
+                        string str = Console.ReadLine();
+                        try{
+                            Console.WriteLine(_repo.GetCustomerByName(str).ToString());
+                        }
+                        catch(NullReferenceException)
+                        {
+                            Log.Error("Invalid navigation selection - Manager Menu");
+                            Log.CloseAndFlush();
+                            Console.WriteLine("Invalid choice - Please try a different name.");
+                            Console.WriteLine("Press \"Enter\" to continue.");
+                            Console.ReadLine();
+                        }
+                        // if (foundCust == null)
+                        // {
+                        //     Console.WriteLine("No Customer by that name found, check your spelling and try again!");
+                        // }
+                        break;
+                    case "0":
+                        stay = false;
+                        break;
+                    default:
+                        Log.Error("Invalid navigation selection - Manager Menu");
+                        Log.CloseAndFlush();
+                        Console.WriteLine("Invalid choice - Please enter \"1\" or \"2\".");
+                        Console.WriteLine("Press \"Enter\" to continue.");
+                        Console.ReadLine();
+                        break;
                 }
             } while(stay);
         }

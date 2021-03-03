@@ -17,7 +17,7 @@ namespace OSUI
 
         public void Start() 
         {
-            Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
             IMenu menu;
             Boolean stay = true;
 
@@ -36,54 +36,50 @@ namespace OSUI
                 switch(userInput)
                 {
                     case "1":
-                        _repo.AddCustomer(newCustomer());
-                        List<Customer> cList = _repo.GetCustomers();
+                        Customer cust = _repo.AddCustomer(newCustomer());
+                        Log.Information("Customer record added to database.");
 
-                        foreach(Customer b in cList)
-                        {
-                            Console.WriteLine(b.ToString());
-                        }
+                        Console.WriteLine("\nSuccessfully registered!");
+                        menu = new CustomerMenu(_repo, cust);
+                        menu.Start();
                         break;
+
                     case "2":
-                        Console.WriteLine("Please enter yourname:");
+                        Console.WriteLine("Please enter your name:");
                         string str = Console.ReadLine();
-                        Customer foundCust = _repo.GetCustomerByName(str);
 
-                        if (foundCust == null)
-                        {
-                            Console.WriteLine("No Customer by that name found, check your spelling and try again!");
+                        try {
+                            Customer foundCust = _repo.GetCustomerByName(str);
+
+                            if ( foundCust.Name.Equals("Jerry Seinfeld"))
+                            {
+                                menu = new ManagerMenu(_repo);
+                                menu.Start();
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nCustomer record for {foundCust.Name} found.");
+                                menu = new CustomerMenu(_repo, foundCust);
+                                menu.Start();
+                            }
                         }
-                        else if ( foundCust.Name.Equals("Jerry Seinfeld"))
+                        catch(NullReferenceException)
                         {
-                            menu = new ManagerMenu(_repo);
-                            menu.Start();
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Customer record for {foundCust.Name} found.");
-                            menu = new CustomerMenu(_repo, foundCust);
-                            menu.Start();
+                            Log.Fatal("No name provided");
+                            Console.WriteLine("Please enter a valid name");
                         }
                         break;
-                    case "3":
-                        //TODO: search for customer details by name
-                        //temp debug code:
-                        //     {menu = new CustomerMenu(_repo);
-                        //     menu.Start();}
-                        // break;
-                    case "4":
-                        List<Customer> newList = _repo.GetCustomers();
 
-                        foreach(Customer b in newList)
-                        {
-                            Console.WriteLine(b.ToString());
-                        }
-                        break;
                     case "0":
                         stay = false;
                         Console.WriteLine("Thanks for shopping with REI!");
                         break;
+
                     default:
+                        Log.Error("Invalid Navigation Selection - ID Entry Menu");
+                        Console.WriteLine("Invalid choice - Please enter 1 or 2 to proceed, or 0 to go back.");
+                        Console.WriteLine("Press \"Enter\" to continue.");
+                        Console.ReadLine();
                         break;
                 }
             } while (stay);

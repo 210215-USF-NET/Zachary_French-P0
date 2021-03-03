@@ -16,12 +16,11 @@ namespace OSUI
         }
         public void Start()
         {
-            Log.Logger = new LoggerConfiguration().WriteTo.File("../Logs/UILogs.json").CreateLogger();
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
             Boolean stay = true;
             IMenu menu;
             do
             {
-                //Print Customer UI
                 Console.WriteLine("");
                 Console.WriteLine("=================");
                 Console.WriteLine("  Welcome back!");
@@ -43,10 +42,6 @@ namespace OSUI
                     menu = new OrderListMenu(_repo, _customer);
                     menu.Start();
                     break;
-                    // GetOrderHistory();
-                    // Console.WriteLine("Press \"Enter\" to continue.");
-                    // Console.ReadLine();
-                    // break;
                 case "0":
                     stay = false;
                     break;

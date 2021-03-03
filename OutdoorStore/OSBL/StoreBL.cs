@@ -13,9 +13,9 @@ namespace OSBL
             _repo = repo;
         }
 
-        public void AddCustomer(Customer c)
+        public Customer AddCustomer(Customer c)
         {
-            _repo.AddCustomer(c);
+            return _repo.AddCustomer(c);
         }
 
         public List<Customer> GetCustomers()

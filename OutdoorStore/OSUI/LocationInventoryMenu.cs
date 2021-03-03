@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using OSBL;
 using OSModels;
+using Serilog;
 
 namespace OSUI
 {
@@ -21,6 +22,7 @@ namespace OSUI
 
         public void Start()
         {
+            Log.Logger = new LoggerConfiguration().WriteTo.File("../SystemLog.json").CreateLogger();
             Boolean stay = true;
 
             do{
@@ -43,7 +45,7 @@ namespace OSUI
                 }
                 if(stay)
                 {
-                    Console.WriteLine("Invalid choice - please enter a valid Location.");
+                    Console.WriteLine("Invalid Selection - please enter a valid Location.");
                     Console.WriteLine("Press \"Enter\" to continue.");
                     Console.ReadLine();
                 }
