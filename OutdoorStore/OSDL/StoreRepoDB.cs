@@ -29,8 +29,6 @@ namespace OSDL
         public List<Model.Customer> GetCustomers()
         {
             return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList();
-            // //temp code:
-            // throw new NotImplementedException();
         }
 
         public Model.Customer GetCustomerByName(string name)
@@ -61,7 +59,12 @@ namespace OSDL
         }
         public Model.Product GetProductByID(int num)
         {
-            return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList().FirstOrDefault(x => x.id == num);
+            return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList().FirstOrDefault(x => x.ID == num);
+        }
+
+        public Model.Product GetProductByShortName(string str)
+        {
+            return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList().FirstOrDefault(x => x.ShortName.Equals(str));
         }
 
         public List<Item> GetItems()
@@ -116,6 +119,15 @@ namespace OSDL
         public void EmptyCart()
         {
             _context.Carts.RemoveRange(_context.Carts.AsNoTracking().Select(x => x));
+        }
+
+        public void UpdateInventory(Inventory inv)
+        {
+            Entity.Inventory oldInv = _context.Inventories.Find(inv.ID);
+            _context.Entry(oldInv).CurrentValues.SetValues(_mapper.ParseInventory(inv));
+
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
         }
     }
 }

@@ -6,11 +6,5 @@ namespace OSModels
         public int Quantity { get; set; }
         public int LocationID { get; set; }
         public int ProductID { get; set; }
-
-        // public override string ToString()
-        // {
-        //     return $"{Quantity} {Product.Name} in stock at {Location.Name}";
-        //     //return $"Inv Report for: {Location.Name}\nProduct: {Product.Name} - {Quantity} in stock";
-        // }
     }
 }

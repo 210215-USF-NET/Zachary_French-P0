@@ -2,7 +2,8 @@ create table Customers
 (
 	id int identity primary key,
 	name varchar(50) not null,
-	address varchar(50) not null
+	address varchar(50) not null,
+	phone varchar(15) not null,
 );
 
 create table Products
@@ -27,6 +28,7 @@ create table Orders
 	id int identity primary key,
 	custID int references Customers(id) not null,
 	locID int references Locations(id) not null,
+	date datetime not null,
 );
 
 create table Inventories
@@ -45,6 +47,15 @@ create table OrderItems
 	quantity int not null,
 );
 
+create table cart
+(
+	id int identity primary key,
+	custID int references Customers(id) not null,
+	locID int references Locations(id) not null,
+	productID int references Products(id) not null,
+	quantity int not null,
+);
+
 create table productCategories
 (
 	id int identity primary key,
@@ -53,12 +64,13 @@ create table productCategories
 
 
 ---------------------------------------------------------------------------
+	
 
-
-insert into Customers (name, address) values
-	('Steve J', '1 Infinite Loop, Cupertino, CA 12345'),
-	('Joseph B','1600 Pennsylvania Ave, Washington, DC 20500'),
-	('Alex Honnold', '5100 Las Vegas Blvd S, Las Vegas, NV 89119');
+insert into Customers (name, address, phone) values
+	('Steve J', '1 Infinite Loop', '(800)-888-8181'),
+	('Joseph B','1600 Pennsylvania Ave', '(162)-777-4567'),
+	('Alex Honnold', '5100 Las Vegas Blvd S', '(624)-626-8371'),
+	('Jerry Seinfeld', '321 Baker St', '(369)-596-5487');
 
 insert into Products (name, shortname, description, price, category) values
 	('Black Diamond Cosmo 300 Headlamp', 'BDHead', 'Rechargeable headlamp with night red-light', 7000, 3),
@@ -77,18 +89,32 @@ insert into locations (name, address) values
 	('Chicago', '201 E Randolph St, Chicago, IL 60602'),
 	('Los Angeles', '1313 Disneyland Dr, Anaheim, CA 92802');
 
-insert into orders (custID, locID) values
-(1, 3),
-(2, 1),
-(3, 3),
-(3, 3);
+insert into orders (custID, locID, date) values
+(1, 3, '20210101 10:34:09 AM'),
+(2, 1, '20210101 12:34:06 AM'),
+(3, 3, '20210103 08:34:49 AM'),
+(3, 3, '20210130 06:34:29 PM'),
+(4, 2, '20210101 07:34:24 PM'),
+(4, 2, '20210108 10:36:00 AM'),
+(4, 2, '20210214 11:17:38 PM'),
+(4, 2, '20210224 10:34:19 PM');
 
 insert into OrderItems (orderID, productID, quantity) values
 (1, 6, 5),
 (2, 5, 1),
 (2, 1, 2),
 (3, 4, 3),
-(4, 8, 1);
+(4, 8, 1),
+(5, 5, 1),
+(5, 1, 2),
+(5, 4, 8),
+(5, 8, 1),
+(6, 4, 1),
+(7, 2, 2),
+(8, 7, 1),
+(8, 3, 1),
+(8, 9, 1);
+
 
 insert into inventories (locationID, productID, quantity) values
 (1, 1, 10),
@@ -119,6 +145,7 @@ SELECT * FROM locations
 SELECT * FROM orders
 SELECT * FROM inventories
 SELECT * FROM orderitems
+select * from cart
 select * from productcategories
 GO;
 
@@ -136,3 +163,4 @@ drop table Locations;
 drop table Inventories;
 drop table OrderItems;
 drop table productCategories;
+drop table cart;

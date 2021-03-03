@@ -15,8 +15,10 @@ namespace OSDL
         List<Location> GetLocations();
         List<Product> GetProducts();
         List<Product> GetProductsByCategories(ProductCategory pcat);
+        Product GetProductByShortName(string str);
         Product GetProductByID(int num);
         List<Inventory> GetInventories();
+        void UpdateInventory(Inventory inv);
         Cart AddCart(Cart newCart);
         List<Cart> GetCarts();
         void EmptyCart();

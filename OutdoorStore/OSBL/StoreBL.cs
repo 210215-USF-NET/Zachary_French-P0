@@ -87,5 +87,15 @@ namespace OSBL
         {
             _repo.EmptyCart();
         }
+
+        public Product GetProductByShortName(string str)
+        {
+            return _repo.GetProductByShortName(str);
+        }
+
+        public void UpdateInventory(Inventory inv)
+        {
+            _repo.UpdateInventory(inv);
+        }
     }
 }
